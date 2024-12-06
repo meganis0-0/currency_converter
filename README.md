@@ -61,6 +61,87 @@
 
 ---
 
+##Использование API
+- Регистрация пользователя
+URL: /api/auth/register/
+Метод: POST
+Тело запроса:
+
+```json
+{
+    "username": "your_username",
+    "password": "your_password"
+}
+```
+
+Ответ:
+
+```json
+{
+    "message": "Пользователь успешно создан"
+}
+```
+
+- Вход пользователя
+URL: /api/auth/login/
+Метод: POST
+Тело запроса:
+
+```json
+{
+    "username": "your_username",
+    "password": "your_password"
+}
+```
+
+Ответ:
+
+```json
+{
+    "refresh": "<refresh_token>",
+    "access": "<access_token>"
+}
+```
+
+- Получение курсов обмена
+   URL: /api/currency/exchange/?base=USD
+   Метод: GET
+   Ответ:
+   
+  ```json
+     {
+    "base": "USD",
+    "rates": {
+        "EUR": 0.85,
+        ...
+          }
+      }
+  ```
+
+- Конвертация валюты
+
+   URL: /api/currency/convert/
+   Метод: POST
+   Тело запроса:
+   
+  ```json
+   {
+       "amount": 100,
+       "from_currency": "USD",
+       "to_currency": "EUR"
+   }
+  ```
+   
+   Ответ:
+   
+  ```json
+        {
+          "converted_amount": <сумма>
+        }
+  ```
+
+---
+
 ## Features
 Это веб-приложение на Django для обмена валют, которое включает:
 - Форму для конвертации валют.

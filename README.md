@@ -40,7 +40,6 @@
 1. **Авторизация и регистрация**:
    - Размещены по адресу `web/login/` и `web/login/`
      ![image](https://github.com/user-attachments/assets/bfd4a279-2208-4a7f-9a7b-0d6ed9a05721)
-     ![image](https://github.com/user-attachments/assets/46c4a6c4-16eb-4644-ba7e-cf211929c740)
 
 3. **Форма конвертации валют**:
 

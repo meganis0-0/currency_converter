@@ -61,49 +61,52 @@
 
 ---
 
-##Использование API
+## Использование API
 - Регистрация пользователя
-URL: /api/auth/register/
-Метод: POST
-Тело запроса:
-
-```json
-{
-    "username": "your_username",
-    "password": "your_password"
-}
-```
-
-Ответ:
-
-```json
-{
-    "message": "Пользователь успешно создан"
-}
-```
+  
+   URL: /api/auth/register/
+   Метод: POST
+   Тело запроса:
+   
+   ```json
+   {
+       "username": "your_username",
+       "password": "your_password"
+   }
+   ```
+   
+   Ответ:
+   
+   ```json
+   {
+       "message": "Пользователь успешно создан"
+   }
+   ```
 
 - Вход пользователя
-URL: /api/auth/login/
-Метод: POST
-Тело запроса:
-
-```json
-{
-    "username": "your_username",
-    "password": "your_password"
-}
-```
-
-Ответ:
-
-```json
-{
-    "refresh": "<refresh_token>",
-    "access": "<access_token>"
-}
-```
+  
+   URL: /api/auth/login/
+   Метод: POST
+   Тело запроса:
+   
+   ```json
+   {
+       "username": "your_username",
+       "password": "your_password"
+   }
+   ```
+   
+   Ответ:
+   
+   ```json
+   {
+       "refresh": "<refresh_token>",
+       "access": "<access_token>"
+   }
+   ```
 
 - Получение курсов обмена
+  
    URL: /api/currency/exchange/?base=USD
    Метод: GET
    Ответ:

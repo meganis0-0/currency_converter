@@ -138,9 +138,9 @@
    Ответ:
    
   ```json
-        {
-          "converted_amount": <сумма>
-        }
+     {
+       "converted_amount": <сумма>
+     }
   ```
 
 ---

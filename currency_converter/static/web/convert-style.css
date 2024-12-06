@@ -1,0 +1,176 @@
+h1 {
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+}
+form {
+    display: flex; 
+    flex-direction: row;
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+.tbl-header {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.tbl-content {
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+}
+td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+body {
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+section {
+    margin: 50px;
+}
+.user-info {
+    position: absolute; /* Позиционируем элемент */
+    top: 20px; /* Отступ сверху */
+    right: 60px; /* Отступ справа */
+    color: white; /* Цвет текста */
+    display: flex; /* Используем Flexbox для выравнивания элементов */
+    align-items: center; /* Вертикальное выравнивание по центру */
+}
+
+.logout-icon {
+    color: #00c6ff; /* Цвет иконки */
+    font-size: 24px; /* Размер иконки */
+    cursor: pointer; /* Указатель при наведении */
+    margin-left: 10px; /* Отступ между текстом и иконкой */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+.logout-icon:hover {
+    color: rgba(0, 198, 255, 0.7); /* Цвет при наведении */
+}
+.effect-7 {
+    border: 1px solid #ccc;
+    padding: 7px 14px 9px;
+    transition: 0.4s;
+}
+
+.effect-7 ~ .focus-border:before,
+.effect-7 ~ .focus-border:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #4caf50;
+    transition: 0.4s;
+}
+
+.effect-7 ~ .focus-border:after {
+    top: auto;
+    bottom: 0;
+}
+
+.effect-7 ~ .focus-border i:before,
+.effect-7 ~ .focus-border i:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background-color: #4caf50;
+    transition: 0.6s;
+}
+
+.effect-7 ~ .focus-border i:after {
+    left: auto;
+    right: 0;
+}
+
+.effect-7:focus ~ .focus-border:before,
+.effect-7:focus ~ .focus-border:after {
+    left: 0;
+    width: 100%;
+    transition: 0.4s;
+}
+
+.effect-7:focus ~ .focus-border i:before,
+.effect-7:focus ~ .focus-border i:after {
+    top: 0;
+    height: 100%;
+    transition: 0.6s;
+}
+
+input[type="text"] {
+    font: 15px/24px 'Muli', sans-serif; /* Измените шрифт при необходимости */
+    color: #333;
+    width: 100%;
+    box-sizing: border-box; /* Учитываем отступы и границы */
+}
+
+.col-3 {
+    float: left; /* Позволяет размещать элементы в строку */
+    width: 27.33%; /* Ширина каждого поля */
+    margin-right: 3%; /* Отступ между полями */
+    position: relative; /* Необходимо для абсолютного позиционирования элементов внутри */
+}
+
+/* Убираем обводку при фокусе */
+input[type="text"]:focus {
+    outline: none; 
+}
+
+.glo {
+    color:#000000;
+    padding: 10px 20px;
+    width:20%;
+    text-decoration:none;
+    text-align:center;
+    margin:20px auto;
+    display: block;
+    background-image: linear-gradient(to left,transparent,transparent 50%,#0bfac6 50%,#0bfac6);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+    font: 400 18px tahoma;
+    border: 1px solid #0bfac6;
+}
+.glo:hover {
+    background-position: 0 0;
+    color:#fff;
+}
+/* Стили для сообщения о конвертации */
+.conversion-message {
+    display: none; /* Скрываем по умолчанию */
+    position: fixed; /* Фиксированное позиционирование */
+    top: 20%; /* Отступ сверху */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    background-color: rgba(37, 36, 36, 0.9); /* Полупрозрачный фон */
+    padding: 20px; /* Отступы внутри окна */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Тень */
+    z-index: 1000; /* Поверх других элементов */
+}

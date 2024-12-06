@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'web/login-style.css' %}">
+    <style>
+        .form .login-form {
+            display: none; /* Скрываем форму регистрации по умолчанию */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">            
+            <!-- Форма входа -->
+            <form class="login-form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Имя пользователя" required />
+                <input type="password" name="password" placeholder="Пароль" required />
+                {% if login_error %}
+                <p class="error-message">{{ login_error }}</p>
+                {% endif %}
+                <button type="submit">Войти</button>
+                <p class="message">Не зарегистрированы? <a href="#" id="show-register">Создать аккаунт</a></p>
+            </form>           
+            <!-- Форма регистрации -->
+            <form class="register-form" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                {% if error %}
+                <p class="error-message">{{ error }}</p>
+                {% endif %}
+                
+                {{ form.username }}<br>
+                {% for error in form.username.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+
+                {{ form.password }}<br>
+                {% for error in form.password.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+
+              <button type="submit">Создать аккаунт</button>
+              <p class="message">Уже зарегистрированы? <a href="#" id="show-login">Войти</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript для переключения между формами
+        $('#show-register').click(function(event){
+           event.preventDefault(); // Предотвращаем переход по ссылке
+           $('.login-form').fadeOut(200, function() {
+               $('.register-form').fadeIn(200);
+               // Очищаем ошибки в форме регистрации
+               $('.register-form .error-message').remove();
+               $('.login-form input').val(''); // Очищаем поля ввода формы логина
+           });
+        });
+    
+        $('#show-login').click(function(event){
+           event.preventDefault(); // Предотвращаем переход по ссылке
+           $('.register-form').fadeOut(200, function() {
+               $('.login-form').fadeIn(200);
+               // Очищаем ошибки в форме логина
+               $('.login-form .error-message').remove();
+               $('.register-form input').val(''); // Очищаем поля ввода формы регистрации
+           });
+        });
+    </script>
+</body>
+</html>

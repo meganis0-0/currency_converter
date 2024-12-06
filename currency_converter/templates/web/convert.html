@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертация валюты</title>
+    <link rel="stylesheet" href="{% static 'web/convert-style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="user-info">
+        {% if request.user.is_authenticated %}
+            <span>Привет, {{ request.user.username }}!</span>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="display:none;">Выход</button> <!-- Скрытая кнопка для отправки формы -->
+                <i class="fa fa-user-times logout-icon" aria-hidden="true" onclick="this.parentNode.querySelector('button').click();"></i>
+            </form>
+        {% endif %}
+    </div>
+
+<h1>Конвертация валюты</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="col-3">
+        <input class="effect-7" type="text" name="amount" placeholder="Сумма" required />
+        <span class="focus-border">
+            <i></i>
+        </span>
+    </div>
+    <div class="col-3">
+        <input class="effect-7" type="text" name="from_currency" placeholder="Из валюты" required />
+        <span class="focus-border">
+            <i></i>
+        </span>
+    </div>
+    <div class="col-3">
+        <input class="effect-7" type="text" name="to_currency" placeholder="В валюту" required />
+        <span class="focus-border">
+            <i></i>
+        </span>
+    </div>
+    <button  class="glo" type="submit">Конвертировать</button>
+</form>
+
+{% if converted_amount %}
+<div class="conversion-message">
+    <p style="color: white;">{{ amount }} {{ from_currency }} равно {{ converted_amount }} {{ to_currency }}</p>
+</div>
+{% endif %}
+
+{% if error %}
+<div class="conversion-message">
+    <p style="color: red;">{{ error }}</p>
+</div>
+{% endif %}
+
+<section>
+    <h1>Курсы валют</h1>
+    <div class="tbl-header">
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>Код</th>
+                    <th>Название</th>
+                    <th>Стоимость (в рублях)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for code, currency in rates.items %}
+                <tr>
+                    <td>{{ currency.CharCode }}</td>
+                    <td>{{ currency.Name }}</td>
+                    <td>{{ currency.Value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+// JavaScript для управления фиксированным заголовком таблицы
+$(window).on("load resize", function() {
+    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+    $('.tbl-header').css({'padding-right': scrollWidth});
+}).resize();
+
+$(document).ready(function() {
+    $('.conversion-message').fadeIn(300).delay(8000).fadeOut(300); // Показать на 3 секунды
+});
+</script>
+
+</body>
+</html>

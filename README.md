@@ -103,7 +103,7 @@
    }
    ```
    
-   Ответ:
+   Ответ (успешно):
    
    ```json
    {
@@ -112,19 +112,36 @@
    }
    ```
 
+   Ответ (ошибка)
+
+   ```json
+   {
+    "error": "Неверный логин или пароль."
+   }
+   ```
+
 - Получение курсов обмена
   
-   URL: /api/currency/exchange/?base=USD
+   URL: /api/currency/exchange_rates/
    Метод: GET
-   Ответ:
+   Authorization: Bearer your_access_token_here
+
+  Ответ (успех):
    
   ```json
   {
-    "base": "USD",
-    "rates": {
-       "EUR": 0.85,
-        ...
-        }
+    "USD": {
+        "Value": 100.0,
+        "Nominal": 1
+    },
+    "EUR": {
+        "Value": 120.0,
+        "Nominal": 1
+    },
+    "RUB": {
+        "Value": 1.0,
+        "Nominal": 1
+    }
   }
   ```
 
@@ -132,6 +149,8 @@
 
    URL: /api/currency/convert/
    Метод: POST
+   Authorization: Bearer your_access_token_here
+   Content-Type: application/json
    Тело запроса:
    
   ```json
@@ -142,12 +161,22 @@
   }
   ```
    
-   Ответ:
+   Ответ (успешно):
    
   ```json
   {
-    "converted_amount": <сумма>
-  }
+    "converted_amount": 85.0,
+    "from_currency": "USD",
+    "to_currency": "EUR"
+   }
+  ```
+
+  Ответ (ошибка):
+
+  ```json
+   {
+    "error": "Недопустимые валюты."
+   }
   ```
 
 ---
